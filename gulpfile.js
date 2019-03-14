@@ -20,6 +20,7 @@ exports.release = () => {
         return;
     }
 
+
     console.log(`Draft release for ${newVersion}.`);
 
     if (!config || !config.github || !config.github.username || !config.github.token) {
