@@ -38,14 +38,14 @@ exports.release = () => {
                 return;
             }
 
-            let previousVersion = response[0].tagName;
+            let previousVersion = response[0].name;
 
             console.log(`previous version ${previousVersion}`);
 
             changelog
                 .write({
                     githubRepoPath: 'https://github.com/kirrg001/testing',
-                    lastVersion: previousVersion
+                    lastVersion: `v${previousVersion}`
                 })
                 .sort()
                 .clean();
@@ -56,7 +56,7 @@ exports.release = () => {
                     draft: true,
                     preRelease: false,
                     tagName: `v${newVersion}`, // yarn version creates v prefix
-                    releaseName: newVersion,
+                    releaseName: `v${newVersion}`,
                     userAgent: 'casper',
                     uri: 'https://api.github.com/repos/kirrg001/testing/releases',
                     github: {
