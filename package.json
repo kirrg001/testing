@@ -7,10 +7,11 @@
   "author": "kirrg001 <katharina.irrgang@googlemail.com>",
   "license": "MIT",
   "scripts": {
-    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; fi",
+    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; else echo \"Uncomitted changes found.\" && exit 1; fi",
     "postship": "gulp release"
   },
   "dependencies": {
+    "@tryghost/release-utils": "0.0.1",
     "gulp": "^4.0.0"
   }
 }
