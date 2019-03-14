@@ -71,7 +71,7 @@ exports.release = () => {
                         username: config.github.username,
                         token: config.github.token
                     },
-                    headerContent: ['Ships with Ghost {VERSION} Compatible with Ghost >= {VERSION}\n\n'],
+                    headerContent: ['**Ships with Ghost {VERSION} Compatible with Ghost >= {VERSION}**\n\n'],
                     changelogPath: path.join(process.cwd(), 'changelog.md')
                 })
                 .then((response)=> {
