@@ -38,7 +38,7 @@ exports.release = () => {
                 return;
             }
 
-            let previousVersion = response[0].name;
+            let previousVersion = response[0].tagName;
 
             console.log(`previous version ${previousVersion}`);
 
