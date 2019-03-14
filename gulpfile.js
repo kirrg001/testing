@@ -33,7 +33,6 @@ exports.release = () => {
         folder: path.join(process.cwd(), '.')
     });
 
-
     return releaseUtils
         .releases
         .get({
