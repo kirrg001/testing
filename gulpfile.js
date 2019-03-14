@@ -4,9 +4,15 @@ const config = require('./config');
 /**
  * You can manually run:
  * npm_package_version=0.5.0 gulp release
+ *
+ * @NOTE:
+ *
+ * `yarn ship` uses the format v%s
  */
 exports.release = () => {
     const releaseUtils = require('@tryghost/release-utils');
+
+    // https://yarnpkg.com/lang/en/docs/cli/version/
     const newVersion = process.env.npm_package_version;
 
     if (!newVersion || newVersion === '') {
@@ -55,7 +61,7 @@ exports.release = () => {
                 .create({
                     draft: true,
                     preRelease: false,
-                    tagName: `v${newVersion}`, // yarn version creates v prefix
+                    tagName: `v${newVersion}`,
                     releaseName: newVersion,
                     userAgent: 'casper',
                     uri: 'https://api.github.com/repos/kirrg001/testing/releases',
