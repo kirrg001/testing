@@ -1,6 +1,6 @@
 {
-    "github": {
-        "username": "<username>",
-        "token": "<gh-personal-access-token>"
-    }
+  "github": {
+    "username": "<username>",
+    "token": "<gh-personal-access-token>"
+  }
 }

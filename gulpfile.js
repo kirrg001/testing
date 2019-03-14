@@ -1,38 +1,23 @@
 const path = require('path');
+const releaseUtils = require('@tryghost/release-utils');
 const config = require('./config');
 
-/**
- * You can manually run:
- * npm_package_version=0.5.0 gulp release
- *
- * @NOTE:
- *
- * `yarn ship` uses the format v%s
- */
-exports.release = () => {
-    const releaseUtils = require('@tryghost/release-utils');
-
-    // https://yarnpkg.com/lang/en/docs/cli/version/
-    const newVersion = process.env.npm_package_version;
-
-    if (!newVersion || newVersion === '') {
-        console.log('Invalid version.');
-        return;
-    }
-
-
-    console.log(`Draft release for ${newVersion}.`);
-
-    if (!config || !config.github || !config.github.username || !config.github.token) {
-        console.log('Please copy config.example.json and configure Github token.');
-        return;
-    }
-
+exports.changelog = ({previousVersion}) => {
     const changelog = new releaseUtils.Changelog({
         changelogPath: path.join(process.cwd(), '.', 'changelog.md'),
         folder: path.join(process.cwd(), '.')
     });
 
+    changelog
+        .write({
+            githubRepoPath: 'https://github.com/kirrg001/testing',
+            lastVersion: `v${previousVersion}`
+        })
+        .sort()
+        .clean();
+};
+
+exports.previousRelease = () => {
     return releaseUtils
         .releases
         .get({
@@ -45,20 +30,41 @@ exports.release = () => {
                 return;
             }
 
-            let previousVersion = response[0].name;
+            console.log(`previous version ${response[0].name}`);
+            return response[0].name;
+        });
+};
 
-            console.log(`previous version ${previousVersion}`);
+/**
+ * You can manually run:
+ * npm_package_version=0.5.0 gulp release
+ *
+ * @NOTE:
+ *
+ * `yarn ship` uses the format v%s
+ */
+exports.release = () => {
+    // https://yarnpkg.com/lang/en/docs/cli/version/
+    const newVersion = process.env.npm_package_version;
 
-            changelog
-                .write({
-                    githubRepoPath: 'https://github.com/kirrg001/testing',
-                    lastVersion: `v${previousVersion}`
-                })
-                .sort()
-                .clean();
+    if (!newVersion || newVersion === '') {
+        console.log('Invalid version.');
+        return;
+    }
 
+    console.log(`Draft release for ${newVersion}.`);
 
-            releaseUtils
+    if (!config || !config.github || !config.github.username || !config.github.token) {
+        console.log('Please copy config.example.json and configure Github token.');
+        return;
+    }
+
+    return exports.previousRelease()
+        .then((previousVersion)=> {
+
+            exports.changelog({previousVersion});
+
+            return releaseUtils
                 .releases
                 .create({
                     draft: true,
@@ -78,5 +84,4 @@ exports.release = () => {
                     console.log('Release draft generated: ' + response.releaseUrl);
                 });
         });
-
 };
