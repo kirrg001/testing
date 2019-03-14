@@ -11,7 +11,7 @@
     "postship": "git fetch && gulp release"
   },
   "dependencies": {
-    "@tryghost/release-utils": "0.1.1",
+    "@tryghost/release-utils": "0.2.0",
     "gulp": "^4.0.0"
   }
 }
