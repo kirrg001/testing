@@ -69,4 +69,5 @@ exports.release = () => {
                     console.log('Release draft generated: ' + response.releaseUrl);
                 });
         });
+
 };
