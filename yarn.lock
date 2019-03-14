@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@tryghost/release-utils@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/release-utils/-/release-utils-0.1.0.tgz#53366b501aff3e7dec66930a4e4713fa888f9a79"
+"@tryghost/release-utils@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@tryghost/release-utils/-/release-utils-0.1.1.tgz#1f4767b79ad9eca21b6b306e247ea3f7e9defe5a"
   dependencies:
     bluebird "^3.5.3"
     emoji-regex "^8.0.0"
