@@ -55,7 +55,7 @@ exports.release = () => {
                 .create({
                     draft: true,
                     preRelease: false,
-                    tagName: newVersion,
+                    tagName: `v${newVersion}`, // yarn version creates v prefix
                     releaseName: newVersion,
                     userAgent: 'casper',
                     uri: 'https://api.github.com/repos/kirrg001/testing/releases',
