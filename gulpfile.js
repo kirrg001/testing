@@ -1,5 +1,10 @@
 const path = require('path');
+const config = require('./config');
 
+/**
+ * You can manually run:
+ * npm_package_version=0.5.0 gulp release
+ */
 exports.release = () => {
     const releaseUtils = require('@tryghost/release-utils');
     const newVersion = process.env.npm_package_version;
@@ -10,6 +15,11 @@ exports.release = () => {
     }
 
     console.log(`Draft release for ${newVersion}.`);
+
+    if (!config || !config.github || !config.github.username || !config.github.token) {
+        console.log('Please copy config.example.json and configure Github token.');
+        return;
+    }
 
     const changelog = new releaseUtils.Changelog({
         changelogPath: path.join(process.cwd(), '.', 'changelog.md'),
@@ -50,8 +60,8 @@ exports.release = () => {
                     userAgent: 'casper',
                     uri: 'https://api.github.com/repos/kirrg001/testing/releases',
                     github: {
-                        username: configuration.github.username,
-                        token: configuration.github.token
+                        username: config.github.username,
+                        token: config.github.token
                     },
                     changelogPath: path.join(process.cwd(), 'changelog.md')
                 })
