@@ -30,7 +30,7 @@ exports.previousRelease = () => {
                 return;
             }
 
-            console.log(`previous version ${response[0].name}`);
+            console.log(`Previous version ${response[0].name}`);
             return response[0].name;
         });
 };
@@ -52,7 +52,7 @@ exports.release = () => {
         return;
     }
 
-    console.log(`Draft release for ${newVersion}.`);
+    console.log(`\nDraft release for ${newVersion}.`);
 
     if (!config || !config.github || !config.github.username || !config.github.token) {
         console.log('Please copy config.example.json and configure Github token.');
@@ -81,7 +81,7 @@ exports.release = () => {
                     changelogPath: path.join(process.cwd(), 'changelog.md')
                 })
                 .then((response)=> {
-                    console.log('Release draft generated: ' + response.releaseUrl);
+                    console.log('\Release draft generated: ' + response.releaseUrl);
                 });
         });
 };
