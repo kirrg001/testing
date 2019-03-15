@@ -46,6 +46,7 @@ exports.previousRelease = () => {
 exports.release = () => {
     // https://yarnpkg.com/lang/en/docs/cli/version/
     const newVersion = process.env.npm_package_version;
+
     const shipsWithGhost = process.env.WITH_GHOST || '{version}';
 
     if (!newVersion || newVersion === '') {
