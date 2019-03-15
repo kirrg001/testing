@@ -52,8 +52,8 @@ exports.release = () => {
     const ghostEnvValues = process.env.GHOST || null;
 
     if (ghostEnvValues) {
-        shipsWithGhost = ghostEnvValues.split('|')[0];
-        compatibleWithGhost = ghostEnvValues.split('|')[1];
+        shipsWithGhost = ghostEnvValues.split(',')[0];
+        compatibleWithGhost = ghostEnvValues.split(',')[1];
     }
 
     if (!newVersion || newVersion === '') {
