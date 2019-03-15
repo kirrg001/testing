@@ -46,8 +46,7 @@ exports.previousRelease = () => {
 exports.release = () => {
     // https://yarnpkg.com/lang/en/docs/cli/version/
     const newVersion = process.env.npm_package_version;
-
-    console.log(process.env.WITH_GHOST);
+    const shipsWithGhost = process.env.WITH_GHOST || '{version}';
 
     if (!newVersion || newVersion === '') {
         console.log('Invalid version.');
@@ -79,7 +78,7 @@ exports.release = () => {
                         username: config.github.username,
                         token: config.github.token
                     },
-                    content: ['**Ships with Ghost {VERSION} Compatible with Ghost >= {VERSION}**\n\n'],
+                    content: [`**Ships with Ghost ${shipsWithGhost} Compatible with Ghost >= {VERSION}**\n\n`],
                     changelogPath: path.join(process.cwd(), 'changelog.md')
                 })
                 .then((response)=> {
