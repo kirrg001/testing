@@ -11,7 +11,7 @@ exports.changelog = ({previousVersion}) => {
     changelog
         .write({
             githubRepoPath: 'https://github.com/kirrg001/testing',
-            lastVersion: `v${previousVersion}`
+            lastVersion: previousVersion
         })
         .sort()
         .clean();
@@ -69,7 +69,7 @@ exports.release = () => {
                 .create({
                     draft: true,
                     preRelease: false,
-                    tagName: `v${newVersion}`,
+                    tagName: newVersion,
                     releaseName: newVersion,
                     userAgent: 'casper',
                     uri: 'https://api.github.com/repos/kirrg001/testing/releases',
