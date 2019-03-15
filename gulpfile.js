@@ -81,7 +81,7 @@ exports.release = () => {
                     changelogPath: path.join(process.cwd(), 'changelog.md')
                 })
                 .then((response)=> {
-                    console.log('\Release draft generated: ' + response.releaseUrl);
+                    console.log(`\nRelease draft generated: ${response.releaseUrl}\n`);
                 });
         });
 };
