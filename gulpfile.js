@@ -59,7 +59,6 @@ exports.release = () => {
         return;
     }
 
-
     return exports.previousRelease()
         .then((previousVersion)=> {
 
