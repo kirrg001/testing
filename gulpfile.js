@@ -56,6 +56,7 @@ exports.release = () => {
         compatibleWithGhost = ghostEnvValues.split(',')[1];
     }
 
+
     if (!newVersion || newVersion === '') {
         console.log('Invalid version.');
         return;
