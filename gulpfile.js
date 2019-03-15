@@ -47,7 +47,7 @@ exports.release = () => {
     // https://yarnpkg.com/lang/en/docs/cli/version/
     const newVersion = process.env.npm_package_version;
 
-    console.log(process.env.withGhost);
+    console.log(process.env.WITH_GHOST);
 
     if (!newVersion || newVersion === '') {
         console.log('Invalid version.');
