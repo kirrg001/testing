@@ -15,6 +15,7 @@ exports.changelog = ({previousVersion}) => {
         })
         .sort()
         .clean();
+
 };
 
 exports.previousRelease = () => {
